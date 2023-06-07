@@ -44,12 +44,13 @@ def delete_all():
     sql = "DELETE FROM artists"
     run_sql(sql) 
 
-def delete(id):
-    sql ="DELETE FROM artists WHERE id = %s"
-    values = [id]
-    run_sql(sql, values)
-
-# def update(user):
-#     sql ="UPDATE users SET (first_name, last_name) = (%s, %s)  WHERE id = %s"
-#     values = [user.first_name, user.last_name, user.id]
+# def delete(id):
+#     sql ="DELETE FROM artists WHERE id = %s"
+#     values = [id]
 #     run_sql(sql, values)
+
+def update(artist):
+    sql ="UPDATE artists SET (first_name, last_name) = (%s, %s)  WHERE id = %s"
+    values = [artist.first_name, artist.last_name, artist.id]
+    run_sql(sql, values)
+    

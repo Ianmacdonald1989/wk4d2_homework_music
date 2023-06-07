@@ -55,24 +55,25 @@ def delete_all():
     sql = "DELETE FROM albums"
     run_sql(sql) 
 
-def delete(id):
-    sql ="DELETE FROM albums WHERE id = %s"
-    values = [id]
-    run_sql(sql, values)
-
-# def update(task):
-#     sql ="UPDATE tasks SET (description, user_id, duration, completed) = (%s, %s, %s, %s) WHERE id = %s"
-#     values = [task.description, task.user.id, task.duration, task.completed, task.id]
+# def delete(id):
+#     sql ="DELETE FROM albums WHERE id = %s"
+#     values = [id]
 #     run_sql(sql, values)
 
-# def tasks_for_user(user):
-#     tasks =[]
+def update(album):
+    sql ="UPDATE albums SET (title, genre, artist_id) = (%s, %s, %s) WHERE id = %s"
+    values = [album.title, album.genre, album.artist.id, album.id]
+    run_sql(sql, values)
 
-#     sql = "SELECT * FROM tasks WHERE user_id =%s"
-#     values = [user.id]
-#     results = run_sql(sql, values)
+def album_for_artist(artist):
+    albums =[]
 
-#     for row in results:
-#         task = Task(row["description"], user, row["duration"], row["completed"], row["id"])
-#         tasks.append(task)
-#     return tasks 
+    sql = "SELECT * FROM album WHERE artist_id =%s"
+    values = [artist.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        album = Album(row["title"], artist, row["genre"], row["id"])
+        albums.append(album)
+    return albums 
+# pdb.set_trace()
